@@ -10,7 +10,7 @@ class Model:
         logging.debug(f"add_missed_word called with language={language}, img_path={img_path}, english_word={english_word}, translation={translation}")
         if not img_path:
             logging.error("Image path is None or empty, skipping add_missed_word.")
-            return  # Ensure img_path is not None or empty
+            return  
         entity_key = self.client.key('MissedWord')
         entity = datastore.Entity(key=entity_key)
         entity.update({
@@ -38,7 +38,7 @@ class Model:
                 'english_word': result['english_word'],
                 'translation': result['translation'],
                 'correct_guesses': result['correct_guesses'],
-                'timestamp': result.get('timestamp')  # Retrieve the timestamp field
+                'timestamp': result.get('timestamp')  
             }
             missed_words.append(missed_word)
         return missed_words
